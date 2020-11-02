@@ -1,0 +1,51 @@
+
+.MainCover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MainCover img{
+    width: 100%;
+    height: auto;
+}
+.Profile_cover{
+	position: relative;
+}
+
+.ProfileImag img{
+	position: absolute;
+    width: 20%;
+    border-radius: 50%;
+    top: 70%;
+    right: 75%;
+}
+
+.HeaderInfo{
+	text-align: center;
+    padding-left: 20px;
+	padding-top: 25px;
+	position: relative;
+
+}
+.HeaderInfo p{
+	background: #e4e4e4d1;
+    width: 50%;
+    position: absolute;
+    right: 24%;
+    padding: 20px;
+    border-radius: 32px;
+
+}
+.left{
+	background: #eae7e7;
+    padding: 22px;
+	width: 40%;
+	float: left;
+}
+.right{
+	background: #eae7e7;
+    padding: 22px;
+	width: 40%;
+	float: right;
+}

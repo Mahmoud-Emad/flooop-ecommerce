@@ -1,0 +1,312 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+            <!-- 
+
+                  .__(.)< (MEOW)
+                  \___)
+              ~~~~~~~~~~~~~
+  
+            -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>
+            Register | flooop.com
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        
+        <!-- CSS
+        ============================================ -->
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Icon Font CSS -->
+        <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Modernizer JS -->
+		<script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+	
+
+	</head>
+	<body>
+        <div class="nav-wrapper">
+            <a href="/">
+                <div class="dots-wrapper">
+                    <div id="dot-1" class="browser-dot"></div>
+                    <div id="dot-2" class="browser-dot"></div>
+                    <div id="dot-3" class="browser-dot"></div>
+                </div>
+            </a>
+            <ul id="navigation">
+                <li><a href="/">HOME</a></li>
+                <li><a href="ContactView">CONTACT</a></li>
+            </ul>
+        </div>
+		<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+			<div class="container">
+				<div class="breadcrumb-content text-center">
+					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="{% url 'login' %}">Login</a>
+						</li>
+						<li class="active"> Register</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="login-register-area pt-100 pb-100">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7 col-md-12 ml-auto mr-auto">
+						<div class="login-register-wrapper">
+							<div class="login-register-tab-list nav">
+								<a class="active" >
+									<h4> Register </h4>
+								</a>
+								
+							</div>
+							<div class="tab-content">
+								<div id="lg1" class="tab-pane active">
+									<div class="login-form-container">
+										<div class="login-register-form">
+											<form method="POST" action="">
+                                                {% csrf_token %}   
+                                                {% if form.errors %}
+													<li style="color: #0e0e0e;
+                                                    font-weight: 700;
+                                                    text-align: center;
+                                                    background: #efefdb;
+                                                    border: 1.5px solid #fdeaea;
+                                                    border-radius: 3px;
+                                                    padding: 8px;">{{form.errors}}</li>
+												  
+												{% endif %} <br>                
+                                                <div class="input-group mb-3">
+                                                    {{form.username}}
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    {{form.first_name}}
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    {{form.last_name}}
+                                                </div>
+                            
+                                                <div class="input-group mb-2">
+                                                    {{form.email}}
+                                                </div>
+                                                <div class="input-group mb-2">
+                                                    {{form.password1}}
+                                                </div>
+                                                <div class="input-group mb-2">
+                                                    {{form.password2}}
+                                                </div>
+                                                
+                                                <div class="button-box">
+													<div class="login-toggle-btn">
+														<a href="{% url 'login' %}">Have Account?</a>
+													</div>
+													<button type="submit" >Register Account</button>
+												</div><br>
+                            
+                                                
+                                                <small style="color: #0e0e0e;
+                                                text-align: center;
+                                                background: #f3f3e3;
+                                                border: 1.5px solid #eadcdc;
+                                                padding: 8px;
+                                            ">By creating an account, you agree to Flooob's Conditions of Use and Privacy Notice.</small>
+                                                
+                                                
+                                            </form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<small class="a-size-small"><a href="{% url 'Privacy_Notice' %}" class="">Privacy Notice </a></small>
+				
+				<small class="a-size-small"><a href="{% url 'ConditionsofUse' %}" style="padding-left: 20px;">Conditions of Use</a> </small>
+				
+	
+				
+			</div>
+			<div class="d-flex justify-content-center">
+				<span class="a-size-mini"><br>
+				© 2019-2020, flooop.com, Inc. or its affiliates.
+				</span>
+			</div>
+		</div>
+
+
+
+		<!-- All JS is here
+		============================================ -->
+
+		<!-- jQuery JS -->
+		<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+		<!-- Popper JS -->
+		<script src="{% static 'js/popper.min.js' %}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<!-- Plugins JS -->
+		<script src="{% static 'js/plugins.js' %}"></script>
+		<!-- Ajax Mail -->
+		<script src="{% static 'js/ajax-mail.js' %}"></script>
+		<!-- Main JS -->
+		<script src="{% static 'js/main.js '%}"></script>
+        <script src="{% static 'js/cart.js '%}"></script>
+        <script>
+                        /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+            //We start indexing at one because CSRF_token is considered and input field 
+            */
+
+            //Query All input fields
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[1].placeholder='Username..';
+            form_fields[2].placeholder='First Name..';
+            form_fields[3].placeholder='Last Name..';
+            form_fields[4].placeholder='Email..';
+            form_fields[5].placeholder='Enter password...';
+            form_fields[6].placeholder='Re-enter Password...';
+
+
+
+            for (var field in form_fields){	
+            form_fields[field].className += ' form-control'
+            }
+        </script>
+
+    </body>
+
+</html>
+
+
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/cart.ico ' %}"/>
+	<title>Flooop Registertion</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <a href="{% url 'store' %}"><img src="{% static 'images/logo22.png' %}" style="         
+            background-position: -5px -130px;
+            margin-left: -100px
+            ">
+		</a>
+	</div>
+	<div class="Stay">
+		<span class="logo-color-text"> STAY </span><strong> HOME,</strong><span class="logo-color-text"> STAY </span><strong> CONNECTED,</strong>
+		
+	</div>
+	<div class="Stay">
+		
+		<small>You can buy everything you need Just one click</small>
+	</div>
+    </div><hr><br><br>
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <h1 class="a-spacing-small">
+                Create account
+              </h1>
+            <div class="d-flex justify-content-center form_container">
+                <form method="POST" action="">
+                    {% csrf_token %}                    
+                    <div class="input-group mb-3">
+                        {{form.username}}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{form.first_name}}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{form.last_name}}
+                    </div>
+
+                    <div class="input-group mb-2">
+                        {{form.email}}
+                    </div>
+                    <div class="input-group mb-2">
+                        {{form.password1}}
+                    </div>
+                    <div class="input-group mb-2">
+                        {{form.password2}}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input class="btn btn2 text-dark" type="submit" value="Register Account">
+                    </div>
+
+                    <small class="a-size-small">
+                        {{form.errors}}
+                    </small>
+                    <small class="a-size-small">By creating an account, you agree to Flooob's Conditions of Use and Privacy Notice.</small>
+                    <hr>
+                    
+                </form>
+            </div>
+            
+
+        </div>
+    </div><br>
+	<div class="d-flex justify-content-center h-100">
+		<small class="loginhelp">Already have an account?<a href="#" class=""></a></small>
+	</div><br>
+	<div class="d-flex justify-content-center">
+		<a href="{% url 'login' %}" class="btn btn2 text-dark">Sign-in</a>
+	</div>
+    <br><hr>
+    <div class="d-flex justify-content-center h-100">
+        <small class="a-size-small"><a href="{% url 'Privacy_Notice' %}" class="">Privacy Notice</a></small>
+        <span class="auth-footer-seperator"></span>
+        <small class="a-size-small"><a href="{% url 'ConditionsofUse' %}" class="">Conditions of Use</a> </small>
+        <span class="auth-footer-seperator"></span>
+        <span class="auth-footer-seperator"></span>
+    </div>
+    <div class="d-flex justify-content-center h-100">
+        <span class="a-size-mini"><br>
+          © 2019-2020, flooop.com, Inc. or its affiliates.
+        </span>
+    </div> <br><br>
+</div>
+
+<script>
+                    /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+    //We start indexing at one because CSRF_token is considered and input field 
+        */
+
+    //Query All input fields
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Username..';
+    form_fields[2].placeholder='First Name..';
+    form_fields[3].placeholder='Last Name..';
+    form_fields[4].placeholder='Email..';
+    form_fields[5].placeholder='Enter password...';
+    form_fields[6].placeholder='Re-enter Password...';
+
+
+
+    for (var field in form_fields){	
+        form_fields[field].className += ' form-control'
+    }
+</script>
+
+</html> -->

@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+            <!-- 
+
+                  .__(.)< (MEOW)
+                  \___)
+              ~~~~~~~~~~~~~
+  
+            -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title> Get Help | flooop.com</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        
+        <!-- CSS
+        ============================================ -->
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Icon Font CSS -->
+        <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Modernizer JS -->
+
+	
+
+	</head>
+
+    <body>
+        <div class="nav-wrapper">
+            <a href="/">
+                <div class="dots-wrapper">
+                    <div id="dot-1" class="browser-dot"></div>
+                    <div id="dot-2" class="browser-dot"></div>
+                    <div id="dot-3" class="browser-dot"></div>
+                </div>
+            </a>
+            <ul id="navigation">
+                <li><a href="/">HOME</a></li>
+                <li><a href="ContactView">Contact</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'images/help.jpg' %}" style="         
+                width: 100%;
+                    ">
+            </div>
+        </div><hr>
+        
+        <div class="container">
+            <h4 style="font-family: initial;">Get product support</h4>
+        </div>
+        
+        <div class="container ">
+            <small style="font-size: 14px;">
+               - You don't have any products eligible for support at this time. Support is available for products like cameras, laptops, and other electronics.</small>
+        </div><hr>
+        <div class="container ">
+            <h4 style="font-family: initial;">About product support</h4>
+        
+        </div>
+        <div class="container ">
+            <h6 style="font-family: initial;">Technical support</h6>
+        </div>
+        <div class="container ">
+            <small style="font-size: 14px;">
+                - Talk to an expert when you need help getting your product set up or troubleshooting issues.</small>
+        </div><br>
+        <div class="container ">
+            <h4 style="font-family: initial;">Parts replacement</h4>
+        </div>
+        <div class="container ">
+            <small style="font-size: 14px;">
+                - Replace missing or broken parts for free. We can send you replacement parts for large items like furniture and appliances.
+            </small>
+        </div><br>
+        <div class="container ">
+            <small style="font-size: 14px;">
+                Product support also provides quick-start guides, user manuals, tutorials, and other tools to help you get the most out of your purchase. You can also get product support for eligible items through Your Orders.
+            </small>
+        </div><hr>
+
+
+        <div class="d-flex justify-content-center">
+            <small class="a-size-small"><a href="{% url 'Privacy_Notice' %}" class="">Privacy Notice </a></small>
+            
+            <small class="a-size-small"><a href="{% url 'ConditionsofUse' %}" style="padding-left: 20px;">Conditions of Use</a> </small>
+            <small class="a-size-small"><a href="{% url 'store' %}" style="padding-left: 20px;">Home</a> </small>
+            
+
+            
+        </div>
+        <div class="d-flex justify-content-center">
+            <span class="a-size-mini"><br>
+            © 2019-2020, flooop.com, Inc. or its affiliates.
+            </span>
+        </div>
+    </body>    
+</html>    

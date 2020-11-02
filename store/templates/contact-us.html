@@ -1,0 +1,83 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+    Contact
+    @{{user.first_name}} {{user.last_name}}
+    {% else %}
+    Contact
+    | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+
+
+    <div class="breadcrumb-area pt-35 pb-35 bg-gray">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="active">Contact us </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="contact-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6">
+                    <div class="contact-info-area">
+                        <h2>Get In Touch</h2>
+                        <h4>Who we are ?</h4>
+                        <p>flooop is guided by four principles: customer obsession rather than competitor focus, passion for invention, commitment to operational excellence, and long-term thinking.</p>
+                        <div class="contact-info-wrap">
+                            <div class="single-contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="sli sli-location-pin"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <p>Address goes here,  street, Crossroad 123.</p>
+                                </div>
+                            </div>
+                            <div class="single-contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="sli sli-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <p><a href="#">info@example.com</a> / <a href="#">info@example.com</a></p>
+                                </div>
+                            </div>
+                            <div class="single-contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="sli sli-screen-smartphone"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <p>+1 35 776 859 000  /  +1 35 776 859 011</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-6">
+                    <div class="contact-from contact-shadow">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{form_contact.Name}}
+                            {{form_contact.Email}}
+                            {{form_contact.Subject}}
+                            {{form_contact.Message}}
+                        
+                            <button class="submit" type="submit">Send Message</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock contant %}

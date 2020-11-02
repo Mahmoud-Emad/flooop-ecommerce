@@ -1,0 +1,5 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["RPNKO"]); }
+
+__d("CometFeedStoryDropdownMenuLoggerContext",["React"],(function(a,b,c,d,e,f){"use strict";a=b("React");c=a.createContext({nodeID:null});e.exports=c}),null);
+__d("ProductTagPhotoEditorProductSuggestionHighConfidenceImpressionFalcoEvent",["FalcoLoggerInternal","getFalcoLogPolicy_DO_NOT_USE"],(function(a,b,c,d,e,f){"use strict";a=b("getFalcoLogPolicy_DO_NOT_USE")("1744218");c=b("FalcoLoggerInternal").create("product_tag_photo_editor_product_suggestion_high_confidence_impression",a);e.exports=c}),null);
+__d("ProductTagPhotoEditorSuggestionRemoveProductClickFalcoEvent",["FalcoLoggerInternal","getFalcoLogPolicy_DO_NOT_USE"],(function(a,b,c,d,e,f){"use strict";a=b("getFalcoLogPolicy_DO_NOT_USE")("1744223");c=b("FalcoLoggerInternal").create("product_tag_photo_editor_suggestion_remove_product_click",a);e.exports=c}),null);

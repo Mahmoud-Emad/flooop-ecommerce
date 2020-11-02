@@ -1,0 +1,98 @@
+
+
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+            <!-- 
+
+                  .__(.)< (MEOW)
+                  \___)
+              ~~~~~~~~~~~~~
+  
+            -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>        
+        {% if user.is_authenticated %}
+        Search @{{user.first_name}} {{user.last_name}}
+        {% else %}
+        Search | flooop.com
+        {% endif %}
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        
+        <!-- CSS
+        ============================================ -->
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Icon Font CSS -->
+        <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Modernizer JS -->
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+
+
+            
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="main-search-active inside SearchPage">
+                <div class="sidebar-search-icon">
+                    <button class="search-close"><a style="color: #fff;" href="{% url 'store' %}"><span class="sli sli-close"></a></span></button>
+                </div>
+                <div class="sidebar-search-input">
+                    <form action="/s/">
+                        <div class="form-search">
+                          <input name="q" id="search" class="input-text" value="" placeholder="Search Now" type="search">
+                            <button>
+                              <i class="sli sli-magnifier"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!-- All JS is here
+        ============================================ -->
+
+        <!-- jQuery JS -->
+        <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <!-- Popper JS -->
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Plugins JS -->
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <!-- Ajax Mail -->
+        <script src="{% static 'js/ajax-mail.js' %}"></script>
+        <!-- Main JS -->
+        <script src="{% static 'js/main.js '%}"></script>
+        <script src="{% static 'js/cart.js '%}"></script>
+
+    </body>
+
+</html>
+
+
+
+

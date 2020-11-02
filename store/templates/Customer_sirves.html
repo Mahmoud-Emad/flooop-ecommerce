@@ -1,0 +1,111 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+    Customer Sirves @{{user.first_name}} {{user.last_name}}
+    {% else %}
+    Customer Sirves | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+
+
+
+<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">Customer Sirves </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% if user.is_authenticated %}
+    <h4 style="text-align: center;">Hi <span style="color:#ff3535">{{user.first_name}},</span>  What can we help you with?</h4>
+
+{% else %}
+    <h4 style="text-align: center;"><span style="color:#ff3535">Hi,</span>  What can we help you with?</h4>
+
+{% endif %}
+
+<p style="text-align: center;">- Some things you can do here</p>
+<div class="blog-area pt-100 pb-100">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="blog-wrap mb-40 text-center scroll-zoom">
+                            <div class="blog-img mb-25">
+                                <a href="{% url 'cart' %}">
+                                    <img src="{% static 'images/ezgif-4-0baeadd2773f.jpg' %}" style="width: 30%;"></a>
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url 'cart' %}">You'r Order's</a></h3>
+                                <p>Track, add, change, remove your order</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="blog-wrap mb-40 text-center scroll-zoom">
+                            <div class="blog-img mb-25">
+                                <a href="{% url 'Sittings' %}">
+                                    <img src="{% static 'images/sign-in-lock._CB485931485_.png' %}" style="width: 40%;"></a>
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url 'Sittings' %}">Login & security</a></h3>
+                                <p>Edit login, name, mobile number</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="blog-wrap mb-40 text-center scroll-zoom">
+                            <div class="blog-img mb-25">
+                                <a href="{% url 'Covid' %}">
+                                    <img src="{% static 'images/faq._CB420097486_.png' %}" style="width: 38%;"></a>
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url 'Covid' %}">Flooop and COVID-19/a></h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="blog-wrap mb-40 text-center scroll-zoom">
+                            <div class="blog-img mb-25">
+                                <a href="{% url 'GetProductHelp' %}">
+                                    <img src="{% static 'images/helpgateway_pls_v2._CB407694449_.png' %}" style="width: 38%;"></a>
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url 'GetProductHelp' %}">Get Product Help</a></h3>
+                                <p>Troubleshoot product setup and usage issues 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="sidebar-style">
+                    <div class="sidebar-widget">
+                        <h4 class="pro-sidebar-title">Search </h4>
+                        <div class="pro-sidebar-search mb-50 mt-25">
+                            <form class="pro-sidebar-search-form" action="/s/">
+                                <input name="q" type="text" placeholder="Search here...">
+                                <button>
+                                    <i class="sli sli-magnifier"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contant %}

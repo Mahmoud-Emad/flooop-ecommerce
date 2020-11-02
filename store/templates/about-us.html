@@ -1,0 +1,58 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+        About us | {{user.first_name}} {{user.last_name}}
+    {% else %}
+        About us | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+
+<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">About us </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="about-story-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="story-img">
+                    <a href="#"><img src="/static/img/about-us.jpg" alt=""></a>
+                    <div class="about-logo">
+                        <h3 style="font-size: 30px;">flooop</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="story-details pl-50">
+                    <div class="story-details-top">
+                        <h2>WELCOME TO <span>flooop</span></h2>
+                        <p>flooop is guided by four principles: customer obsession rather than competitor focus, passion for invention, commitment to operational excellence, and long-term thinking.</p>
+                    </div>
+                    <div class="story-details-bottom">
+                        <h4>Building the future</h4>
+                        <p>We strive to have a positive impact on customers, employees, small businesses, the economy, and communities. Amazonians are smart, passionate builders with different backgrounds and goals, who share a common desire to always be learning and inventing on behalf of our customers.</p>
+                    </div>
+                    <div class="story-details-bottom">
+                        <h4>WIN BEST ONLINE SHOP AT 2017</h4>
+                        <p>flooop provide how all this mistaken idea of denouncing pleasure and sing pain was born an will give you a complete account of the system, and expound the actual teachings of the eat explorer. </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+
+{% endblock contant %}

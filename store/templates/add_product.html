@@ -1,0 +1,299 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+    Offer Day @{{user.first_name}} {{user.last_name}}
+    {% else %}
+    Offer Day | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+
+
+
+<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">Add Product </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Post wrapper start -->
+<div class="my-account-wrapper pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- My Account Page Start -->
+                <div class="myaccount-page-wrapper">
+                    <!-- My Account Tab Menu Start -->
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form_class.media }}
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="myaccount-tab-menu nav" role="tablist">
+                                    {% if form_class.errors %}
+                                        <a href="#ErorrForm" class="active" data-toggle="tab">Eroor's</a>
+                                        <a href="#dashboad" data-toggle="tab"><i class="fa fa-dashboard"></i>
+                                            Flooop Role's</a>  
+                                        <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Product Name</a>    
+                                        <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Product Image's</a>    
+                                        <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Product Discraption</a>    
+                                        <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> Product Detail</a>    
+                                        <a href="#account-info" data-toggle="tab">Ctegory, Brand's</a>
+                                    {% else %}
+                                        <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
+                                            Flooop Role's</a>  
+                                        <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Product Name</a>    
+                                        <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Product Image's</a>    
+                                        <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Product Discraption</a>    
+                                        <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> Product Detail</a>    
+                                        <a href="#account-info" data-toggle="tab">Ctegory, Brand's</a>
+                                    {% endif %}
+
+                                    
+                                </div>
+                            </div>
+  
+                            <div class="col-lg-9 col-md-8">
+                                <div class="tab-content" id="myaccountContent">
+                                    {% if form_class.errors %}
+                                        <div class="tab-pane fade show active" id="ErorrForm" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Error's</h3>    
+                                                <div class="welcome">
+                                                    <p>Hello, <strong>{{user.first_name}}</strong> ( You need to make sure everything in your
+                                                        <strong style="color:#FF3535;"> Product !</strong> getting well )
+                                                    </p>
+                                                </div><br>
+                                                <h6>We'll explain what wrong we found when deploy your  <strong style="color:#FF3535;"> Product !</strong></h6>
+                                                <ul>
+                                                    <li><strong style="color:#FF3535;"> {{form_class.errors}}</strong></li>
+                                                </ul><br>
+                                                <h6>Please make sure your edit in the safe way <strong style="color:#FF3535;">{{user.first_name}},</strong> Please Select Your Product Images Again (Go and edit your<strong style="color:#FF3535;"> Product !</strong> right now)</h6>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade show" id="dashboad" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Role's</h3>    
+                                                <div class="welcome">
+                                                    <p>Hello, <strong>{{user.first_name}}</strong> ( You must read our <strong><a href="{% url 'ConditionsofUse' %}" style="color:#FF3535;">Condations !</a></strong> before you get started )</p>
+                                                </div><br>
+                                                <h6>We'll explan some role's meybe you'll need</h6>
+                                                <p class="mb-0">
+                                                    You are about to add your product in our special world, this will not and did not cost you much. There are some suggestions that we will suggest to you. 
+                                                </p><br>
+                                                <ul>
+                                                    <li>1 - You can only pay 5% on every product you have that you will display here (it will be deducted after sale only)</li>
+                                                    <li>2 - You can activate the intensive subscription service and enjoy an entire month of only $ 20 dollars</li>
+                                                    <li>3 - You can activate the intensive subscription service and enjoy 6 months only, with a value of $ 70 USD</li>
+                                                    <li>4 - You can activate the intensive subscription service and enjoy for a year only, the value of $ 120 USD</li>
+                                                </ul><br>
+                                                <h6>You ready to use you'r <strong style="color:#FF3535;">free trial</strong> (Add Just 5 Product's right now)</h6>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="orders" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Name</h3>    
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    {{form_class.name}}
+                                                
+                                                </div>
+                                                <br>
+                                                <ul>
+                                                    <li>Make sure you'r product name must have a strong name to speak with Keysord's, Tag's..stc</li>
+                                                </ul><br>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="download" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Image's</h3>    
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>Product Header Image</th>
+                                                                <th>More Image 1</th>
+                                                                <th>More Image 2</th>
+                                                                <th>More Image 3</th>
+                                                                <th>More Image 4</th>
+                                                            </tr>
+                                                        </thead>    
+                                                        <tbody>
+                                                            <tr style="height: 80px;">
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" alt="">{{form_class.image}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image1}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image2}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image3}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image4}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Discraption</h3>
+                                                <p class="saved-message">{{form_class.discraption}}</p>
+                                                <h4 style="font-size: 16px;">
+                                            
+                                                Try to make you'r Discraption speaking with UX, Tag's, User Search Book, Keyword's, by put <strong style="color:#FF3535">Strong</strong> words
+                                            
+                                                </h4>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Detail</h3>    
+                                                <address>
+                                                    <p><strong>Product Price:</strong><span>{{form_class.price}}</span></p>
+                                                    <br>
+                                                    <p><strong>Discount Price:</strong><span>{{form_class.Discountprice}}</span></p>
+                                                    <br>
+                                                    <p><strong>New Product:</strong><span>{{form_class.ISNew}}</span></p>
+                                                    <br>
+                                                    <p><strong>Best seller:</strong><span>{{form_class.ISBestseller}}</span></p>
+                                                    <br>
+                                                    <p><strong>Digital Product:</strong><span>{{form_class.digital}}</span></p>
+                                                    
+                                                </address>    
+                                                
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Ctegory, Department, Brand's</h3>    
+                                                <div class="account-details-form">
+                                                <p><strong>Product Category: </strong> <span>{{form_class.category}}</span></p><br>
+                                                <p><strong>Product Brand: </strong> <span>{{form_class.Brand}}</span></p>
+                                                <br>
+                                                    <div class="single-input-item">
+                                                        <button class="check-btn sqr-btn ">Add Product</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% else %}
+                                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Role's</h3>    
+                                                <div class="welcome">
+                                                    <p>Hello, <strong>{{user.first_name}}</strong> ( You must read our <strong><a href="{% url 'ConditionsofUse' %}" style="color:#FF3535;">Condations !</a></strong> before you get started )</p>
+                                                </div><br>
+                                                <h6>We'll explan some role's meybe you'll need</h6>
+                                                <p class="mb-0">
+                                                    You are about to add your product in our special world, this will not and did not cost you much. There are some suggestions that we will suggest to you. 
+                                                </p><br>
+                                                <ul>
+                                                    <li>1 - You can only pay 5% on every product you have that you will display here (it will be deducted after sale only)</li>
+                                                    <li>2 - You can activate the intensive subscription service and enjoy an entire month of only $ 20 dollars</li>
+                                                    <li>3 - You can activate the intensive subscription service and enjoy 6 months only, with a value of $ 70 USD</li>
+                                                    <li>4 - You can activate the intensive subscription service and enjoy for a year only, the value of $ 120 USD</li>
+                                                </ul><br>
+                                                <h6>You ready to use you'r <strong style="color:#FF3535;">free trial</strong> (Add Just 5 Product's right now)</h6>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="orders" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Name</h3>    
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    {{form_class.name}}
+                                                
+                                                </div>
+                                                <br>
+                                                <ul>
+                                                    <li>Make sure you'r product name must have a strong name to speak with Keysord's, Tag's..stc</li>
+                                                </ul><br>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="download" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Image's</h3>    
+                                                <div class="myaccount-table table-responsive text-center">
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>Product Header Image</th>
+                                                                <th>More Image 1</th>
+                                                                <th>More Image 2</th>
+                                                                <th>More Image 3</th>
+                                                                <th>More Image 4</th>
+                                                            </tr>
+                                                        </thead>    
+                                                        <tbody>
+                                                            <tr style="height: 80px;">
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" alt="">{{form_class.image}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image1}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image2}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image3}}</td>
+                                                                <td style="position: relative;"><img src="{% static 'images/img.jpg' %}" style="width: 130px;" alt="">{{form_class.image4}}</td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Discraption</h3>
+                                                <p class="saved-message">{{form_class.discraption}}</p>
+                                                <h4 style="font-size: 16px;">
+                                            
+                                                Try to make you'r Discraption speaking with UX, Tag's, User Search Book, Keyword's, by put <strong style="color:#FF3535">Strong</strong> words
+                                            
+                                                </h4>
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Product Detail</h3>    
+                                                <address>
+                                                    <p><strong>Product Price:</strong><span>{{form_class.price}}</span></p>
+                                                    <br>
+                                                    <p><strong>Discount Price:</strong><span>{{form_class.Discountprice}}</span></p>
+                                                    <br>
+                                                    <p><strong>New Product:</strong><span>{{form_class.ISNew}}</span></p>
+                                                    <br>
+                                                    <p><strong>Best seller:</strong><span>{{form_class.ISBestseller}}</span></p>
+                                                    <br>
+                                                    <p><strong>Digital Product:</strong><span>{{form_class.digital}}</span></p>
+                                                    
+                                                </address>    
+                                                
+                                            </div>
+                                        </div>  
+                                        <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <h3>Ctegory, Department, Brand's</h3>    
+                                                <div class="account-details-form">
+                                                <p><strong>Product Category: </strong> <span>{{form_class.category}}</span></p><br>
+                                                <p><strong>Product Brand: </strong> <span>{{form_class.Brand}}</span></p>
+                                                <br>
+                                                    <div class="single-input-item">
+                                                        <button class="check-btn sqr-btn ">Add Product</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

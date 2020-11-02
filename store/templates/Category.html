@@ -1,0 +1,60 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+    Category Home | @{{user.first_name}} {{user.last_name}}
+    {% else %}
+    Category Home | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+    <div class="breadcrumb-area pt-35 pb-35 bg-gray">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="active">Category Home </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="blog-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                {% for cat in all_department %}               
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-wrap mb-40 text-center scroll-zoom">
+                            <div class="blog-img mb-25">
+                                <div class="widtj" style="width: 100%;">
+                                    {% if cat.Image %}
+                                        <img src="{{cat.Image.url}}" style="width: 60%;
+                                            border: #FF3535 1px solid;
+                                            border-radius: 4px;
+                                            height: 180px;
+                                            object-fit: fill;
+                                        ">
+                                    {% else %}
+                                        <img src="{% static 'img/product/product-15.svg' %}" style="width: 60%;
+                                            border: #FF3535 1px solid;
+                                            border-radius: 4px;
+                                            height: 180px;
+                                            object-fit: fill;
+                                        ">
+                                {% endif %}
+
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url 'category' cat.name|slugify %}">{{cat.name}}</a></h3>
+                                <p>{{cat.Title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock contant %}

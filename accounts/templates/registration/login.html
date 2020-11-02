@@ -1,0 +1,157 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+            <!-- 
+
+                  .__(.)< (MEOW)
+                  \___)
+              ~~~~~~~~~~~~~
+  
+            -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>
+            Login | flooop.com
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        
+        <!-- CSS
+        ============================================ -->
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Icon Font CSS -->
+        <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
+        <!-- Plugins CSS -->
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Modernizer JS -->
+		<script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+	
+
+	</head>
+	<body>
+		<div class="nav-wrapper">
+			<a href="/">
+				<div class="dots-wrapper">
+					<div id="dot-1" class="browser-dot"></div>
+					<div id="dot-2" class="browser-dot"></div>
+					<div id="dot-3" class="browser-dot"></div>
+				</div>
+			</a>
+			<ul id="navigation">
+				<li><a href="/">HOME</a></li>
+				<li><a href="ContactView">CONTACT</a></li>
+			</ul>
+		</div>
+		<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+			<div class="container">
+				<div class="breadcrumb-content text-center">
+					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li class="active">Login</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="login-register-area pt-100 pb-100">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7 col-md-12 ml-auto mr-auto">
+						<div class="login-register-wrapper">
+							<div class="login-register-tab-list nav">
+								<a class="active" >
+									<h4> login </h4>
+								</a>
+								
+							</div>
+							{% for message in messages %}
+								
+									<li style="color: #0e0e0e;
+									font-weight: 700;
+									text-align: center;
+									background: #efefdb;
+									border: 1.5px solid #fdeaea;
+									border-radius: 3px;
+									padding: 8px;">{{message}}</li>
+							{% endfor %}
+							<div class="tab-content">
+								<div id="lg1" class="tab-pane active">
+									<div class="login-form-container">
+										<div class="login-register-form">
+											<form action="#" method="POST">
+												{% csrf_token %}
+												<input type="text" name="username" placeholder="Username..." class="form-control">
+												<input type="password" name="password" placeholder="Password..." class="form-control" >
+												{% if form.errors %}
+													<li style="color: #0e0e0e;
+													font-weight: 700;
+													text-align: center;
+													background: #efefdb;
+													border: 1.5px solid #fdeaea;
+													border-radius: 3px;
+													padding: 8px;">{{form.errors}}</li>
+												  
+												{% endif %}
+												<div class="button-box">
+													<div class="login-toggle-btn">
+														<a href="{% url 'password_reset' %}">Forgot Password?</a>
+													</div>
+													<button type="submit" >Login</button>
+												</div><br>
+												<small style="text-align: center;">New to Flooop?<a href="#" class=""></a></small><br>
+												<a href="{% url 'register' %}" class="login-toggle-btn">Create you'r Flooob account</a>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<small class="a-size-small"><a href="{% url 'Privacy_Notice' %}" class="">Privacy Notice </a></small>
+				
+				<small class="a-size-small"><a href="{% url 'ConditionsofUse' %}" style="padding-left: 20px;">Conditions of Use</a> </small>
+				
+	
+				
+			</div>
+			<div class="d-flex justify-content-center">
+				<span class="a-size-mini"><br>
+				© 2019-2020, flooop.com, Inc. or its affiliates.
+				</span>
+			</div>
+		</div>
+
+
+
+		<!-- All JS is here
+		============================================ -->
+
+		<!-- jQuery JS -->
+		<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+		<!-- Popper JS -->
+		<script src="{% static 'js/popper.min.js' %}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<!-- Plugins JS -->
+		<script src="{% static 'js/plugins.js' %}"></script>
+		<!-- Ajax Mail -->
+		<script src="{% static 'js/ajax-mail.js' %}"></script>
+		<!-- Main JS -->
+		<script src="{% static 'js/main.js '%}"></script>
+		<script src="{% static 'js/cart.js '%}"></script>
+
+    </body>
+
+</html>
+

@@ -1,0 +1,83 @@
+
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+    Recommendations @{{user.first_name}} {{user.last_name}}
+    {% else %}
+    Recommendations | flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+
+<div class="breadcrumb-area pt-35 pb-35 bg-gray">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">Recommendations </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="product-details-area pt-100 pb-65">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="box-slider-active nav-style-1 owl-carousel product-details-img">
+                    {% for item in item_cat %}
+                    <div class="single-img-gallery mb-30 zoompro-span">
+                        {% if item.image1 %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{{item.image1.url}}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        {% else %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{% static 'img/product/product-15.svg' %}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        
+                        {% endif %}
+                            <span>{{item.name}}</span>
+                        </div>
+                    {% endfor %}
+                </div><hr>
+                <div class="box-slider-active nav-style-1 owl-carousel product-details-img">
+                    {% for item in item_cat %}
+                    <div class="single-img-gallery mb-30 zoompro-span">
+                        {% if item.image1 %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{{item.image1.url}}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        {% else %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{% static 'img/product/product-15.svg' %}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        
+                        {% endif %}
+                            <span>{{item.name}}</span>
+                        </div>
+                    {% endfor %}
+                </div><hr>
+                <div class="box-slider-active nav-style-1 owl-carousel product-details-img">
+                    {% for item in item_cat %}
+                    <div class="single-img-gallery mb-30 zoompro-span">
+                        {% if item.image1 %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{{item.image1.url}}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        {% else %}
+                            <a  href="{% url 'category' item.category|slugify %}"><img src="{% static 'img/product/product-15.svg' %}" style="    height: 300px;
+                                object-fit: contain;"></a>
+                        
+                        {% endif %}
+                            <span>{{item.name}}</span>
+                        </div>
+                    {% endfor %}
+                </div><hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock contant %}

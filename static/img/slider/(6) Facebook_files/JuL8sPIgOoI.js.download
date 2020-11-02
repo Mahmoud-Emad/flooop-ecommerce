@@ -1,0 +1,4 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["B9AyH"]); }
+
+__d("VideoComposerDialogUiFalcoEvent",["FalcoLoggerInternal","getFalcoLogPolicy_DO_NOT_USE"],(function(a,b,c,d,e,f){"use strict";a=b("getFalcoLogPolicy_DO_NOT_USE")("1759123");c=b("FalcoLoggerInternal").create("video_composer_dialog_ui",a);e.exports=c}),null);
+__d("cometVideoComposerLog",["VideoComposerDialogUiFalcoEvent"],(function(a,b,c,d,e,f){"use strict";a=function(a,c,d,e){b("VideoComposerDialogUiFalcoEvent").log(function(){return{actor_id:c,composer_entry_point:"pages_feed",dialog_mode:"video_upload",error_message:e==null?void 0:e.message,event:a,video_id:d,web_framework:"COMET"}})};f.cometVideoComposerLog=a}),null);

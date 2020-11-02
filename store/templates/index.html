@@ -1,0 +1,327 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}         
+    {% if user.is_authenticated %}
+        Home - {{user.first_name}} {{user.last_name}}
+    {% else %}
+        Home-flooop.com
+    {% endif %}
+{% endblock title %}
+
+{% block contant %}
+{% for item in banner %}
+    <div class="slider-area">
+        <div class="slider-active-3 owl-carousel nav-style-3">
+            <div class="single-slider slider-height-3 bg-gray">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
+                            <div class="slider-content-2 slider-animated-1">
+                                <h1 class="animated">{{item.category}}</h1>
+                                <p class="animated">{{item.Text}}
+                                    {% if item.HashTag %}
+                                        <small style="color: #ff3535; font-size:12px;"> {{item.HashTag}} </small>
+                                    {% endif %}
+                                </p>
+                                <div class="slider-btn">
+                                    <a class="animated" href="{% url 'category' item.category|slugify %}">Shop Now <i class="sli sli-basket-loaded"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
+                            <div class="slider-single-img-3 slider-animated-1">
+                                <img class="animated" src="/static/img/slider/slider-hm1-2.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+    <br>
+    <div class="product-area pb-70">
+        <div class="container">
+            {% if products %}
+            <div class="section-title text-center pb-40">
+                <h2>All Products</h2>
+                {% if count %}
+                    <h4>We have almost +{{count}} of product's <span style="color: #ff3535;">Make iT Easy </span> </h4>
+                {% else %}
+                {% endif %}
+                <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical {{b}}</p>
+            </div>
+            {% endif %}
+            <div class="product-tab-list nav pb-60 text-center">
+                <a class="active" href="#product-1" data-toggle="tab">
+                    <h4>Top Products</h4>
+                </a>
+                <a href="#product-2" data-toggle="tab">
+                    <h4>Best Saller's</h4>
+                </a>
+            </div>
+            <div class="tab-content jump-2">
+                <div id="product-1" class="tab-pane active">
+                    <div class="ht-products product-slider-active owl-carousel">
+                        {% for product in products %}
+                            <div class="ht-product ht-product-action-on-hover ht-product-category-right-bottom mb-30">
+                                <div class="ht-product-inner">
+                                    <div class="ht-product-image-wrap">
+                                        {% if product.ISNew %}
+                                            <span class="ht-product-label ht-product-label-left SpanOnCardLeft">NEW</span>
+                                        {% endif %}
+                                        {% if product.Discountprice > 0 %}
+                                            <span class="ht-product-label ht-product-label-right SpanOnCardRight">Sale</span>
+                                        {% endif %}
+                                        {% if product.image %}
+                                            <a href="{% url 'product_deteil' product.slug %}" class="ht-product-image"> <img src="{{product.image.url}}" style="height: 220px;object-fit: contain;" alt="Universal Product Style"> </a>
+                                        {% else %}
+                                            <a href="{% url 'product_deteil' product.slug %}" class="ht-product-image"> <img src="{% static 'img/product/product-15.svg' %}" style="height: 220px;object-fit: contain;" alt="Universal Product Style"> </a>
+                                        {% endif %}
+                                        <div class="ht-product-action">
+                                            <ul>
+                                                <li><a data-product={{product.id}} data-action="add" class="pro-details-cart btn-hover add-btn update-cart "><i class="sli sli-bag"></i><span class="ht-product-action-tooltip">Add to Cart</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="ht-product-content" style="height: 225px;">
+                                        <div class="ht-product-content-inner">
+                                            
+                                            <h4 class="ht-product-title"><a href="{% url 'product_deteil' product.slug %}">{{product.name|slice:'20'|safe}}..</a></h4>
+                                            <div class="ht-product-price">
+                                                {% if product.Discountprice > 0 %}
+                                                    <span class="new">${{product.Discountprice|floatformat:2}} </span>
+                                                    <span class="old">${{product.price|floatformat:2}} </span>
+                                                {% else %}
+                                                    <span class="new">${{product.price|floatformat:2}} </span>
+                                                {% endif %}
+
+                                            </div><br>
+                                            <div class="ht-product-ratting-wrap">
+                                                <div class="ht-product-categories"><span>{{product.Brand}}</span></div>
+                                                {% if product.ISBestseller %}
+                                                    <div class="ht-product-categories" style="left: 0%; color: black;"><strong>HOT</strong></div>
+                                                {% endif %}
+
+                                            </div>
+                                            <div class="discraption" style="position: absolute;">
+                                                <p>{{product.discraption|slice:'70'|safe}}..</p>
+                                            </div>
+                                        </div>
+                                        <div class="ht-product-action">
+                                            <ul>
+                                                <li><a data-product={{product.id}} data-action="add" class="pro-details-cart btn-hover add-btn update-cart ">
+                                                    <i class="sli sli-bag"></i><span class="ht-product-action-tooltip">Add to Cart</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="ht-product-countdown-wrap">
+                                            <div class="ht-product-countdown" data-countdown="2020/01/01"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!--Product Start-->
+                        <!--Product End-->
+                    </div>
+                    <div class="product-area pb-150">
+                        <div class="container">
+                            <div class="arrivals-wrap item-wrapper">
+                                <div class="show-more-btn text-center mt-10 toggle-btn">
+                                    <a href="{% url 'ShopAllIn' %}">View All Products</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="product-2" class="tab-pane">
+                    <div class="ht-products product-slider-active owl-carousel">
+                        {% for product in products %}
+                            {% if product.ISBestseller %}
+                                <div class="ht-product ht-product-action-on-hover ht-product-category-right-bottom mb-30">
+                                    <div class="ht-product-inner">
+                                        <div class="ht-product-image-wrap">
+                                            {% if product.ISBestseller %}
+                                                <span class="ht-product-label ht-product-label-left SpanOnCardLeft" style="width: 35%;">Best Seller</span>
+                                            {% endif %}
+                                            {% if product.Discountprice > 0 %}
+                                                <span class="ht-product-label ht-product-label-right SpanOnCardRight">Sale</span>
+                                            {% endif %}
+                                            {% if product.image %}
+                                                <a href="{% url 'product_deteil' product.slug %}" class="ht-product-image"> <img src="{{product.image.url}}" style="height: 220px;object-fit: contain;" alt="Universal Product Style"> </a>
+                                            {% else %}
+                                                <a href="{% url 'product_deteil' product.slug %}" class="ht-product-image"> <img src="{% static 'img/product/product-15.svg' %}" style="height: 220px;object-fit: contain;" alt="Universal Product Style"> </a>
+                                            {% endif %}
+                                            <div class="ht-product-action">
+                                                <ul>
+                                                    <li><a href="#" data-toggle="modal" data-target="#exampleModal"><i class="sli sli-magnifier"></i><span class="ht-product-action-tooltip">Quick View</span></a></li>
+                                                    <li><a href="#"><i class="sli sli-heart"></i><span class="ht-product-action-tooltip">Add to Wishlist</span></a></li>
+                                                    <li><a href="#"><i class="sli sli-refresh"></i><span class="ht-product-action-tooltip">Add to Compare</span></a></li>
+                                                    <li><a data-product={{product.id}} data-action="add" class="pro-details-cart btn-hover add-btn update-cart ">
+                                                        <i class="sli sli-bag"></i><span class="ht-product-action-tooltip">Add to Cart</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="ht-product-content" style="height: 225px;">
+                                            <div class="ht-product-content-inner">
+                                                
+                                                <h4 class="ht-product-title"><a href="{% url 'product_deteil' product.slug %}">{{product.name|slice:'20'|safe}}..</a></h4>
+                                                <div class="ht-product-price">
+                                                    {% if product.Discountprice > 0 %}
+                                                        <span class="new">${{product.Discountprice|floatformat:2}} </span>
+                                                        <span class="old">${{product.price|floatformat:2}} </span>
+                                                    {% else %}
+                                                        <span class="new">${{product.price|floatformat:2}} </span>
+                                                    {% endif %}
+
+                                                </div><br>
+                                                <div class="ht-product-ratting-wrap">
+                                                    <div class="ht-product-categories"><span>{{product.Brand}}</span></div>
+                                                    {% if product.ISBestseller %}
+                                                        <div class="ht-product-categories" style="left: 0%; color: black;"><strong>HOT</strong></div>
+                                                    {% endif %}
+
+                                                </div>
+                                                <div class="discraption" style="position: absolute;">
+                                                    <p>{{product.discraption|slice:'70'|safe}}..</p>
+                                                </div>
+                                            </div>
+                                            <div class="ht-product-action">
+                                                <ul>
+                                                    <li><a data-product={{product.id}} data-action="add" class="pro-details-cart btn-hover add-btn update-cart ">
+                                                        <i class="sli sli-bag"></i><span class="ht-product-action-tooltip">Add to Cart</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="ht-product-countdown-wrap">
+                                                <div class="ht-product-countdown" data-countdown="2020/01/01"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="product-area pb-150">
+                        <div class="container">
+                            <div class="arrivals-wrap item-wrapper">
+                                <div class="show-more-btn text-center mt-10 toggle-btn">
+                                    <a href="{% url 'bestseller' %}">View All best seller</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% if Comments %}
+      
+    
+        <div class="testimonial-area pt-80 pb-95 section-margin-1" style="background-image: url('{% static "img/bg/bg-1.jpg" %}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 ml-auto mr-auto">
+                        <div class="testimonial-active owl-carousel nav-style-1">
+                            {% for Comment in Comments %}
+                                <div class="single-testimonial text-center">
+                                    {% if Comment.name.customer.imageURL %}
+                                        <img src="{{ Comment.name.customer.imageURL }}" style="width: 120px;height: 120px;border-radius: 50%;">
+                                    {% else %}
+                                        <img src="{% static 'images/default1.png' %}">
+                                    {% endif %}
+                                    <p>{{Comment.comment}}</p>
+                                    <div class="client-info">
+                                        <img src="{% static 'img/icon-img/testi.png' %}" alt="">
+                                        <h5>{{Comment.name.first_name}}-{{Comment.name.last_name}}</h5><br>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="single-testimonial text-center" >
+                                <form method="POST">
+                                    
+                                    {% csrf_token %}
+                                    {{comment_form.comment}}
+                                    <input type="submit" class="show-more-btn text-center mt-10 toggle-btn">
+                                </form>
+                                <p>Tell Us And Customer Waht Is You'r Feed About Our<a href="/" style="color: #ff3535;"> Flooop</a> World</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+<br>
+    <div class="product-area pt-95 pb-70">
+        <div class="container">
+            <div class="section-title text-center pb-60">
+                <h2>Some of bags from <span style="color: #ff3535;"> Women's &amp; Fashion</span></h2>
+                <p>Last days women's have many trend's, be sure lady trend has no important without a romantic, super, simple..etc, 
+                     Click on image to see more about women and fashion</p>
+            </div>
+            <div class="arrivals-wrap scroll-zoom">
+                <div class="ht-products product-slider-active owl-carousel">
+                    {% for swips in swip %}
+                        <div class="ht-product ht-product-action-on-hover ht-product-category-right-bottom mb-30">
+                            <div class="ht-product-inner">
+                                <div class="ht-product-image-wrap">
+                                    {% if swips.image %}
+                                        <a href="{% url 'category' swips.category|slugify %}">
+                                            <img style="height: 268px;object-fit: contain;" src="{{swips.image.url}}"></a>
+                                        {% else %}
+                                            <a href="{% url 'category' swips.category|slugify %}">
+                                                <img style="height: 268px;object-fit: contain;" src="{% static 'img/product/product-15.svg' %}"></a>
+                                        {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <!--Product End-->
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="feature-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4">
+                    <div class="single-feature mb-40">
+                        <div class="feature-icon">
+                            <img src="{% static 'img/icon-img/free-shipping.png' %}" alt="">
+                        </div>
+                        <div class="feature-content">
+                            <h4>Free Shipping</h4>
+                            <p>Most product are free <br>shipping.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-4 col-md-4">
+                    <div class="single-feature mb-40 pl-50">
+                        <div class="feature-icon">
+                            <img src="{% static 'img/icon-img/support.png' %}" alt="">
+                        </div>
+                        <div class="feature-content">
+                            <h4>Customer Support</h4>
+                            <p>24x7 Customer Support</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4">
+                    <div class="single-feature mb-40">
+                        <div class="feature-icon">
+                            <img src="{% static 'img/icon-img/security.png' %}" alt="">
+                        </div>
+                        <div class="feature-content">
+                            <h4>Secure Payment</h4>
+                            <p>Most Secure Payment <br>for customer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock contant %}

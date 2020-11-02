@@ -1,0 +1,327 @@
+{% extends "Main.html" %}
+{% load static %}
+{% block title %}    
+    {{product_deteil.name}}
+{% endblock title %}
+{% block contant %}
+    <div class="breadcrumb-area pt-35 pb-35 bg-gray">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="active">{{product_deteil.name |slice:'50'|safe}} | Item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="product-details-area pt-100 pb-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-details-img">
+                        <div class="zoompro-border zoompro-span">
+
+                            <img class="zoompro" src="{{product_deteil.image.url}}" data-zoom-image="{{product_deteil.image.url}}" alt=""/>
+                            {% if product_deteil.Discountprice > 0 %}
+                                <span>Save ${{product_deteil.get_amount_saved|floatformat:2}}</span>
+                            {% else %}
+
+                            {% endif %}
+                            <div class="product-video">
+                                <a class="video-popup" href="https://www.youtube.com/watch?v=tce_Ap96b0c">
+                                    <i class="sli sli-control-play"></i>
+                                    View Video
+                                </a>
+                            </div>
+                        </div>
+                        <div id="gallery" class="mt-20 product-dec-slider">
+                            {% if product_deteil.image1 %}
+                                <a data-image="{{product_deteil.image1.url}}" data-zoom-image="{{product_deteil.image1.url}}">
+                                    <img src="{{product_deteil.image1.url}}" style="width: 80%;" alt="">
+                                </a>    
+                            {% else %}
+                                <img src="{% static 'img/product/product-15.svg' %}" style="width:80%" alt=Product">
+                            {% endif %}
+                            {% if product_deteil.image2 %}
+                                <a data-image="{{product_deteil.image2.url}}" data-zoom-image="{{product_deteil.image2.url}}">
+                                    <img src="{{product_deteil.image2.url}}" style="width: 80%;" alt="">
+                                </a>    
+                            {% else %}
+                                <img src="{% static 'img/product/product-15.svg' %}" style="width:80%" alt=Product">
+                            {% endif %}
+                            {% if product_deteil.image3 %}
+                                <a data-image="{{product_deteil.image3.url}}" data-zoom-image="{{product_deteil.image3.url}}">
+                                    <img src="{{product_deteil.image3.url}}" style="width: 80%;" alt="">
+                                </a>    
+                            {% else %}
+                                <img src="{% static 'img/product/product-15.svg' %}" style="width:80%" alt=Product">
+                            {% endif %}
+                            {% if product_deteil.image4 %}
+                                <a data-image="{{product_deteil.image4.url}}" data-zoom-image="{{product_deteil.image4.url}}">
+                                    <img src="{{product_deteil.image4.url}}" style="width: 80%;" alt="">
+                                </a>    
+                            {% else %}
+                                <img src="{% static 'img/product/product-15.svg' %}" style="width:80%" alt=Product">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-details-content ml-30">
+                        <h2>{{product_deteil.name}}</h2>
+                        <div class="product-details-price">
+                            {% if product_deteil.Discountprice > 0 %}
+                                <span>${{product_deteil.Discountprice|floatformat:2}} </span>
+                                <span class="old">${{product_deteil.price|floatformat:2}} </span>
+                            {% else %}
+                                <span>${{product_deteil.price|floatformat:2}} </span>
+                            {% endif %}
+
+                        </div>
+                        <div class="pro-details-rating-wrap">
+                            <!-- <div class="pro-details-rating">
+                                <i class="sli sli-star yellow"></i>
+                                <i class="sli sli-star yellow"></i>
+                                <i class="sli sli-star yellow"></i>
+                                <i class="sli sli-star yellow"></i>
+                                <i class="sli sli-star yellow"></i>
+                            </div> -->
+                            <span>
+                                {% if comments %}
+                                    <p style="color: #ff3535;"> +{{comments.count}} Review{{ comments|pluralize }}</p>  
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p>{{product_deteil.discraption |slice:'190'|safe}}</p>
+                        <div class="pro-details-meta">
+                            <span>Tag :</span>
+                            <ul>
+                                {% if product_deteil.Discountprice > 0 %}
+                                    <li> <a href="{% url 'Saleproducts' %}"> # SALE </a></li>
+                                {% endif %}
+                                {% if product_deteil.ISNew %}  
+                                    <li> <a href="{% url 'offerday' %}"> # New </a></li>
+                                {% endif %}
+                                {% if product_deteil.ISBestseller %} 
+                                    <li> <a href="{% url 'bestseller' %}"> # Bestseller </a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="pro-details-quality">
+                            <div class="pro-details-cart btn-hover">
+                                <button data-product={{product_deteil.id}} data-action="add" class="pro-details-cart btn-hover add-btn update-cart "> Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="pro-details-meta">
+                            <span>Category :</span>
+                            <ul>
+                                <li><a href="{% url 'category' product_deteil.category|slugify %}">{{product_deteil.category}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description-review-area pb-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <div class="description-review-wrapper">
+                        <div class="description-review-topbar nav">
+                            <a class="active" data-toggle="tab" href="#des-details1">Description</a>
+                            <a data-toggle="tab" href="#des-details3">Additional information</a>
+                            
+                            {% if comments %}
+                                <a data-toggle="tab" href="#des-details2"> +{{comments.count}} Review{{ comments|pluralize }}</a>
+                            {% else %}
+                                <a data-toggle="tab" href="#des-details2">Add Review</a>
+                            {% endif %}
+
+                        </div>
+                        <div class="tab-content description-review-bottom">
+                            <div id="des-details1" class="tab-pane active">
+                                <div class="product-description-wrapper">
+                                    <p>{{product_deteil.discraption}}</p>
+                                </div>
+                            </div>
+                            <div id="des-details3" class="tab-pane">
+                                <div class="product-anotherinfo-wrapper">
+                                    <ul>
+                                        {% if user.is_authenticated %}
+                                            <li><span>Auther:</span><span style="color: #ff3535;">{{product_deteil.oner.first_name}} {{product_deteil.oner.last_name}}</span> </li>
+                                        {% else %}
+                                            <li><span>Auther:</span><span style="color: #ff3535;">{{product_deteil.oner.first_name}} {{product_deteil.oner.last_name}}</span> </li>
+                                        {% endif %}
+                                            <li><span>Brand:</span><span style="color: #ff3535;">{{product_deteil.Brand}}</span></li>
+                                        {% if product_deteil.digital %}
+                                            <li><span>Digital:</span><span style="color: #ff3535;">Yes</span></li>
+                                        {% else %}
+                                            <li><span>Digital:</span><span style="color: #ff3535;">No</span></li>
+                                        {% endif %}
+
+                                        {% if product_deteil.Discountprice > 0 %}
+                                            <li><span>Sale:</span><span style="color: #ff3535;">Yes</span></li>
+                                        {% else %}
+                                            <li><span>Sale:</span><span style="color: #ff3535;">No</span></li>
+                                        {% endif %}
+
+                                        {% if product_deteil.ISNew %}  
+                                            <li><span>New:</span><span style="color: #ff3535;">Yes</span></li>
+                                        {% else %}
+                                            <li><span>New:</span><span style="color: #ff3535;">No</span></li>
+                                        {% endif %}
+                                        {% if product_deteil.ISBestseller %} 
+                                            <li><span>Best Seller:</span><span style="color: #ff3535;">Yes</span></li>
+                                        {% else %}
+                                            <li><span>Best Seller:</span><span style="color: #ff3535;">No</span></li>
+                                        {% endif %}
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {% if comments %}
+                                <div id="des-details2" class="tab-pane">
+                                    <div class="review-wrapper">
+                                            {% for com in comments %}
+                                                <div class="single-review">
+                                                    <div class="review-img">
+                                                        {% if com.name.customer.imageURL %}
+                                                            <img src="{{ com.name.customer.imageURL }}" class="rounded-circle" style="height: 70px; width:70px" alt="">
+                                                        {% else %}
+                                                            <img src="{% static 'images/default1.png' %}" class="rounded-circle">
+                                                        {% endif %}
+                                                        
+                                                    </div>
+                                                    <div class="review-content">
+                                                        {% if com.comment %}
+                                                            <p>“ {{com.comment}} ”</p>
+                                                        {% else %}
+                                                            <p>* No Comment Just Review *</p>
+                                                        {% endif %}
+                                                        <div class="review-top-wrap">
+                                                            <div class="review-name">
+                                                                <h4 style="top: 6%;right: 10%;">{{com.name.first_name}}-{{com.name.last_name}}</h4>
+                                                            </div><br>
+                                                            <div style="position: absolute;left: 75%;" class="review-rating">
+                                                                {% if com.reat == '1' %}
+                                                                    <i class="sli sli-star"></i>
+                                                                {% elif com.reat == '2' %}
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                {% elif com.reat == '3' %}
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                {% elif com.reat == '4' %}
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                {% elif com.reat == '5' %}
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                    <i class="sli sli-star"></i>
+                                                                {% endif %}
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="ratting-form-wrapper">
+                                                <span>Add a Review</span>
+                                                <p>Your review will help this item to get best sealler, will help people to take a feedback about also <span>*</span></p>
+                                                    <div class="ratting-form">
+                                                        <form method="POST">
+                                                            {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="rating-form-style mb-20">
+                                                                        <label>Your Review <span>*</span></label>
+                                                                        {{comment_form.comment}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="rating-form-style mb-20">
+                                                                    <label>Reat <span>*</span></label>
+                                                                        {{comment_form.reat}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-submit">
+                                                                        <input type="submit" value="Submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                </div>
+                        {% else %}
+                        <div id="des-details2" class="tab-pane">
+                            <div class="review-wrapper">
+                                    <div class="ratting-form-wrapper">
+                                        <span>Add a Review</span>
+                                        <p>Your review will help this item to get best sealler, will help people to take a feedback about also <span>*</span></p>
+                                            <div class="ratting-form">
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="rating-form-style mb-20">
+                                                                <label>Your Review <span>*</span></label>
+                                                                {{comment_form.comment}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="rating-form-style mb-20">
+                                                            <label>Reat <span>*</span></label>
+                                                                {{comment_form.reat}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-submit">
+                                                                <input type="submit" value="Submit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                    
+                                </div>
+                        </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="pro-dec-banner">
+                        <a href="#"><img src="{% static '' %} img/banner/banner-15.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="product-area pb-70">
+        <div class="container">
+            <div class="section-title text-center pb-60">
+                <h2>Related products</h2>
+                <p> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical</p>
+            </div>
+
+        </div>
+    </div> -->
+{% endblock contant %}
